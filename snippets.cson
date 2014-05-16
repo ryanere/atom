@@ -1,0 +1,95 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+
+
+'.source.js':
+
+  # vanilla
+  'Function':
+    'prefix': 'fu'
+    'body': 'function($1) {\n  $2\n}'
+
+  'Auto-Executing Anonymous Function':
+    'prefix': 'fua'
+    'body': '(function($1) {\n  $2\n})();'
+
+  'Log':
+    'prefix': 'log'
+    'body': 'console.log($1);$2'
+
+  'Alert':
+    'prefix': 'al'
+    'body': 'alert($1);$2'
+
+  'If':
+    'prefix': 'if'
+    'body': 'if ($1) {\n  $2\n}'
+
+  'For':
+    'prefix': 'for'
+    'body': 'for (var i = 0; i < $1; i++) {\n  $2\n}'
+
+  'Module':
+    'prefix': 'module'
+    'body': '(function(scope) {\n  var ModuleName$1 = (function() {\n\n    var privateVariable = \'private\';\n\n    return {\n      publicMethod: function() {}\n    };\n  })();\n\n  scope.ModuleName$2 = ModuleName$3;\n})(this);'
+
+  'Constructor':
+    'prefix': 'construct'
+    'body': '(function(scope) {\n  function ConstructorName$1(options) { \n    this.property = options.property; \n    this.init(); \n  }\n\n  ConstructorName$2.prototype.init = function(){\n    console.log(\'init\'); \n  };\n\n  var constructorName$3 = function(options) {\n    return new ConstructorName$4(options);\n  };\n\n  scope.constructorName$5 = constructorName$6; \n})(this);'
+
+
+  # jquery
+  '$.on':
+    'prefix': 'on'
+    'body': '$collection$1.on({\n  click: function(event) {\n    $2\n  }\n});'
+
+  '$.ajax':
+    'prefix': 'ajax'
+    'body': '$.ajax({\n  url: \'$1\' \n}).done(function(data) {\n   $2 \n});'
+
+  '$.each':
+    'prefix': 'each'
+    'body': '$.each(arrayOrObject$1, function(key, value) {\n   $2 \n});'
+
+  '$.proxy':
+    'prefix': 'proxy'
+    'body': '$.proxy(functionName$1, context$2);'
+
+
+  #ember
+  'Controller':
+    'prefix': 'controller'
+    'body': 'App.$1Controller = Ember.ObjectController.extend({\n  actions: {}\n});'
+
+  'Route':
+    'prefix': 'route'
+    'body': 'App.$1Route = Ember.Route.extend({\n  // activate: function() {}\n  // deactivate: function() {},\n  // setupController: function(controller, model) {},\n  // renderTemplate: function() {},\n  // beforeModel: function() {},\n  // afterModel: function() {},\n  model: function() {\n $2\n  }\n});'
+
+  'Model':
+    'prefix': 'model'
+    'body': 'App.$1 = DS.Model.extend({\n  title: DS.attr(\'string\')\n});'
+
+  'Component':
+    'prefix': 'component'
+    'body': 'App.$1 = Ember.Component.extend({\n // tagName: \'div\', \n // classNames: [\'classname\']  \n});'
+
+  'Mixin':
+    'prefix': 'mixin'
+    'body': 'App.$1Mixin = Ember.Mixin.create({\n $2 \n});'
+
+  'Helper':
+    'prefix': 'helper'
+    'body': 'Ember.Handlebars.registerBoundHelper(\'$1\', function(args) {\n $2 \n});'

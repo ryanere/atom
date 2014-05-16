@@ -1,0 +1,26 @@
+{
+  "name": "neutron-syntax",
+  "theme": "syntax",
+  "version": "0.2.0",
+  "description": "Syntax theme for the Neutron UI theme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brentd/neutron-syntax"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "readme": "# Neutron Syntax Theme for Atom\n\nComplementing syntax theme for the [Neutron UI](http://atom.io/packages/neutron-ui) package.\n\n**Note:** this theme changes line-height, and there is currently a bug which incorrectly calculates line-height until you switch tabs. If your cursor is out of whack, just switch tabs.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/brentd/neutron-syntax/issues"
+  },
+  "homepage": "https://github.com/brentd/neutron-syntax",
+  "_id": "neutron-syntax@0.2.0",
+  "dist": {
+    "shasum": "2b4873d10529f729ca1bd8a4c935a11f5d4f8b1a"
+  },
+  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-31215-1umhcq2/package.tgz",
+  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-31215-1umhcq2/package.tgz"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "spacegray-atom-dark-syntax",
+  "theme": "syntax",
+  "version": "0.1.2",
+  "description": "A short description of your syntax theme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jchouse/spacegray-atom-dark-syntax"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "readme": "# SpaceAtom syntax theme\n\nTaking care of every detail\n\nMinimalistik theme for atom. Best use with `spacegray-atom-dark-ui`.\n\n![image](http://img-fotki.yandex.ru/get/9746/54504136.7/0_de60f_e2ce8495_orig.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/jchouse/spacegray-atom-dark-syntax/issues"
+  },
+  "homepage": "https://github.com/jchouse/spacegray-atom-dark-syntax",
+  "_id": "spacegray-atom-dark-syntax@0.1.2",
+  "dist": {
+    "shasum": "ee77de9cd1a68d5b784f0b97646bf0bb4ee7ec3e"
+  },
+  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-30748-135efim/package.tgz",
+  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-30748-135efim/package.tgz"
+}

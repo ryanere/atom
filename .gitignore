@@ -1,0 +1,5 @@
+.node-gyp/
+compile-cache/
+init.coffee
+storage
+styles.less

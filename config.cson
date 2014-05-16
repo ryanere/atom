@@ -1,0 +1,22 @@
+'exception-reporting':
+  'userId': 'e39fbbeb-a39b-d8fd-accc-f3ac905e5407'
+'release-notes':
+  'viewedVersion': '0.95.0'
+'welcome':
+  'showOnStartup': false
+'metrics':
+  'userId': '3f5f9ca5ddd6111039ac49da74442baf10e900e5'
+'editor':
+  'fontFamily': 'Menlo'
+  'showIndentGuide': true
+  'fontSize': 10
+'core':
+  'themes': [
+    'neutron-ui'
+    'neutron-syntax'
+  ]
+  'ignoredNames': [
+    '.git'
+    '.svn'
+    '.DS_Store'
+  ]
