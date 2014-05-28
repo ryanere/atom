@@ -10,6 +10,7 @@
   'fontFamily': 'Menlo'
   'showIndentGuide': true
   'fontSize': 10
+  'showInvisibles': true
 'core':
   'themes': [
     'neutron-ui'

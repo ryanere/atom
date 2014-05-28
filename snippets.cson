@@ -14,7 +14,7 @@
 #     'body': 'console.log $1'
 #
 
-
+# javascript
 '.source.js':
 
   # vanilla
@@ -69,6 +69,11 @@
     'body': '$.proxy(functionName$1, context$2);'
 
 
+  #q-unit
+  'test':
+    'prefix': 'test'
+    'body': 'test(\'$1\', function() {\n  $2\n});'
+
   #ember
   'Controller':
     'prefix': 'controller'
@@ -84,7 +89,7 @@
 
   'Component':
     'prefix': 'component'
-    'body': 'App.$1 = Ember.Component.extend({\n // tagName: \'div\', \n // classNames: [\'classname\']  \n});'
+    'body': 'App.$1Component = Ember.Component.extend({\n  // tagName: \'div\', \n  // classNames: [\'classname\']  \n});'
 
   'Mixin':
     'prefix': 'mixin'
@@ -93,3 +98,9 @@
   'Helper':
     'prefix': 'helper'
     'body': 'Ember.Handlebars.registerBoundHelper(\'$1\', function(args) {\n $2 \n});'
+
+# sass
+'.source.scss':
+  'Include':
+    'prefix': 'inc'
+    'body': '@include $1;'
