@@ -1,7 +1,7 @@
 {
   "name": "spacegray-atom-dark-syntax",
   "theme": "syntax",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "A short description of your syntax theme",
   "repository": {
     "type": "git",
@@ -17,10 +17,10 @@
     "url": "https://github.com/jchouse/spacegray-atom-dark-syntax/issues"
   },
   "homepage": "https://github.com/jchouse/spacegray-atom-dark-syntax",
-  "_id": "spacegray-atom-dark-syntax@0.1.2",
+  "_id": "spacegray-atom-dark-syntax@0.1.4",
   "dist": {
-    "shasum": "ee77de9cd1a68d5b784f0b97646bf0bb4ee7ec3e"
+    "shasum": "8114ed0edda2c4af0f3a91e45343e4677d0b7124"
   },
-  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-30748-135efim/package.tgz",
-  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-30748-135efim/package.tgz"
+  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29397-ggk8cj/package.tgz",
+  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29397-ggk8cj/package.tgz"
 }

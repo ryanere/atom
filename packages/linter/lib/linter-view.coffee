@@ -1,103 +1,180 @@
-{exec, child} = require 'child_process'
+_ = require 'lodash'
 fs = require 'fs'
 temp = require 'temp'
+{exec, child} = require 'child_process'
+
 {XRegExp} = require 'xregexp'
+
 GutterView = require './gutter-view'
+HighlightsView = require './highlights-view'
 
 temp.track()
-# The base class for linters.
-# Subclasses must at a minimum define the attributes syntax, cmd, and regex.
+
+# Public: The base linter view
 class LinterView
 
   linters: []
   totalProcessed: 0
   tempFile: ''
   messages: []
+  subscriptions: []
 
-  # Instantiate the views
+  # Pubic: Instantiate the views
   #
-  # editorView      The editor view
-  constructor: (editorView, statusBarView, linters)->
+  # editorView - the atom editor view on which to place highlighting and gutter
+  #              annotations
+  # statusBarView - shared StatusBarView between all linters
+  # linters - global linter set to utilize for linting
+  constructor: (editorView, statusBarView, linters) ->
 
     @editor = editorView.editor
     @editorView = editorView
     @gutterView = new GutterView(editorView)
+    @HighlightsView = new HighlightsView(editorView)
     @statusBarView = statusBarView
 
     @initLinters(linters)
 
-    atom.workspaceView.on 'pane:active-item-changed', =>
+    @subscriptions.push atom.workspaceView.on 'pane:item-removed', =>
+      @statusBarView.hide()
+
+    @subscriptions.push atom.workspaceView.on 'pane:active-item-changed', =>
       @statusBarView.hide()
       if @editor.id is atom.workspace.getActiveEditor()?.id
-        @dislayStatusBar()
+        @displayStatusBar()
 
     @handleBufferEvents()
+    @handleConfigChanges()
 
-    @editorView.on 'editor:display-updated', =>
-      @gutterView.render @messages
+    @subscriptions.push @editorView.on 'editor:display-updated', =>
+      @displayGutterMarkers()
 
-    @editorView.on 'cursor:moved', =>
-      @statusBarView.render @messages
+    @subscriptions.push @editorView.on 'cursor:moved', =>
+      @displayStatusBar()
 
-    @lint()
-
+  # Public: Initialize new linters (used on grammar chagne)
+  #
+  # linters - global linter set to utilize for linting
   initLinters: (linters) ->
     @linters = []
     grammarName = @editor.getGrammar().scopeName
     for linter in linters
       sytaxType = {}.toString.call(linter.syntax)
-      if sytaxType is '[object Array]' && grammarName in linter.syntax or sytaxType is '[object String]' && grammarName is linter.syntax
+      if sytaxType is '[object Array]' and
+      grammarName in linter.syntax or
+      sytaxType is '[object String]' and
+      grammarName is linter.syntax
         @linters.push(new linter(@editor))
 
-  handleBufferEvents: () =>
+  # Internal: register config modifications handlers
+  handleConfigChanges: ->
+    @subscriptions.push atom.config.observe 'linter.lintOnSave',
+      (lintOnSave) => @lintOnSave = lintOnSave
+
+    @subscriptions.push atom.config.observe 'linter.lintOnChangeInterval',
+      (lintOnModifiedDelayMS) =>
+        # If text instead of number into user config
+        throttleInterval = parseInt(lintOnModifiedDelayMS)
+        throttleInterval = 1000 if isNaN throttleInterval
+        # create throttled lint command
+        @throttledLint = (_.throttle @lint, throttleInterval).bind this
+
+    @subscriptions.push atom.config.observe 'linter.lintOnChange',
+      (lintOnModified) => @lintOnModified = lintOnModified
+
+    @subscriptions.push atom.config.observe 'linter.lintOnEditorFocus',
+      (lintOnEditorFocus) => @lintOnEditorFocus = lintOnEditorFocus
+
+    @subscriptions.push atom.config.observe 'linter.showGutters',
+      (showGutters) =>
+        @showGutters = showGutters
+        @displayGutterMarkers()
+
+    @subscriptions.push atom.config.observe 'linter.showErrorInStatusBar',
+      (showMessagesAroundCursor) =>
+        @showMessagesAroundCursor = showMessagesAroundCursor
+        @displayStatusBar()
+
+    @subscriptions.push atom.config.observe 'linter.showHightlighting',
+      (showHightlighting) =>
+        @showHightlighting = showHightlighting
+        @displayHighlights()
+
+  # Internal: register handlers for editor buffer events
+  handleBufferEvents: =>
     buffer = @editor.getBuffer()
 
-    buffer.on 'saved', (buffer) =>
-      if atom.config.get 'linter.lintOnSave'
-        if buffer.previousModifiedStatus
-          console.log 'linter: lintOnSave'
-          @lint()
+    @subscriptions.push buffer.on 'reloaded saved', (buffer) =>
+      @throttledLint() if @lintOnSave
 
-    buffer.on 'destroyed', ->
-      buffer.off 'saved'
+    @subscriptions.push buffer.on 'destroyed', ->
+      buffer.off 'reloaded saved'
       buffer.off 'destroyed'
 
-    @editor.on 'contents-modified', =>
-      if atom.config.get 'linter.lintOnModified'
-        console.log 'linter: lintOnModified'
-        @lint()
+    @subscriptions.push @editor.on 'contents-modified', =>
+      @throttledLint() if @lintOnModified
 
+    @subscriptions.push atom.workspaceView.on 'pane:active-item-changed', =>
+      if @editor.id is atom.workspace.getActiveEditor()?.id
+        @throttledLint() if @lintOnEditorFocus
+
+  # Public: lint the current file in the editor using the live buffer
   lint: ->
-    console.log 'linter: run commands'
     @totalProcessed = 0
     @messages = []
     @gutterView.clear()
+    @HighlightsView.removeHighlights()
     if @linters.length > 0
       temp.open {suffix: @editor.getGrammar().scopeName}, (err, info) =>
-        @tempFile = info.path
+        info.completedLinters = 0
         fs.write info.fd, @editor.getText(), =>
           fs.close info.fd, (err) =>
             for linter in @linters
-              linter.lintFile(info.path, @processMessage)
-              # console.log 'stderr: ' + stderr
-              # if error is not null
-              #  console.log 'stderr: ' + error
+              linter.lintFile(info.path, (messages) => @processMessage(messages, info))
 
-  processMessage: (messages)=>
-    @totalProcessed++
+  # Internal: Process the messages returned by linters and render them.
+  #
+  # messages - An array of messages to annotate:
+  #           :level  - the annotation error level ('error', 'warning')
+  #           :range - The buffer range that the annotation should be placed
+  processMessage: (messages, tempFileInfo) =>
+    tempFileInfo.completedLinters++
     @messages = @messages.concat(messages)
-    if @totalProcessed == @linters.length
-      fs.unlink @tempFile
-    @dislay()
+    if tempFileInfo.completedLinters == @linters.length
+      fs.unlink tempFileInfo.path
+    @display()
 
-  dislay: ->
-    @dislayGutterMarkers()
-    @dislayStatusBar()
+  # Internal: Render all the linter messages
+  display: ->
+    @displayGutterMarkers()
 
-  dislayGutterMarkers: ->
-    @gutterView.render @messages
+    @displayHighlights()
 
-  dislayStatusBar: ->
-    @statusBarView.render @messages, @editor
+    @displayStatusBar()
+
+  # Internal: Render gutter markers
+  displayGutterMarkers: ->
+    if @showGutters
+      @gutterView.render @messages
+    else
+      @gutterView.render []
+
+  # Internal: Render code highlighting for message ranges
+  displayHighlights: ->
+    if @showHightlighting
+      @HighlightsView.setHighlights(@messages)
+    else
+      @HighlightsView.removeHighlights()
+
+  # Internal: Update the status bar for new messages
+  displayStatusBar: ->
+    if @showMessagesAroundCursor
+      @statusBarView.render @messages, @editor
+    else
+      @statusBarView.render [], @editor
+
+  # Public: remove this view and unregister all it's subscriptions
+  remove: ->
+    subscription.off() for subscription in @subscriptions
 
 module.exports = LinterView

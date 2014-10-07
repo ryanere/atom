@@ -1,7 +1,7 @@
 {
   "name": "dcunited08-ui",
   "theme": "ui",
-  "version": "0.4.7",
+  "version": "0.6.3",
   "description": "A Sublime-like theme based off Atom Dark UI",
   "license": "MIT",
   "repository": {
@@ -11,16 +11,16 @@
   "engines": {
     "atom": ">0.40.0"
   },
-  "readme": "#DCUnited08 UI\n\nA Sublime-like theme based off Atom Dark UI.\n\n\n\n![](https://raw.githubusercontent.com/dcunited08/atom-dcunited08-ui/master/screen_shot.png)\n",
+  "readme": "#DCUnited08 UI\n\nA Sublime-like theme based off Atom Dark UI.\n\n\n\n\n\n![](https://raw.githubusercontent.com/dcunited08/atom-dcunited08-ui/master/screen_shot.png)\n\n#Updated\n- Removed boxes after modified files\n- Merged in upstream's smaller tabs",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/dcunited08/dcunited08-ui/issues"
   },
   "homepage": "https://github.com/dcunited08/dcunited08-ui",
-  "_id": "dcunited08-ui@0.4.7",
+  "_id": "dcunited08-ui@0.6.3",
   "dist": {
-    "shasum": "adea4ec5d47efb1c6e46136fa7c892b9dd28aae5"
+    "shasum": "61aaf7b7fbb6da05254a65737d646045bc5d31af"
   },
-  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-31140-pll7bj/package.tgz",
-  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-31140-pll7bj/package.tgz"
+  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29357-128cxa9/package.tgz",
+  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29357-128cxa9/package.tgz"
 }

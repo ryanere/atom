@@ -9,8 +9,8 @@
 'editor':
   'fontFamily': 'Menlo'
   'showIndentGuide': true
-  'fontSize': 10
-  'showInvisibles': true
+  'invisibles': {}
+  'fontSize': 12
 'core':
   'themes': [
     'neutron-ui'
