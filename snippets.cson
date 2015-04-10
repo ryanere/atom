@@ -50,6 +50,17 @@
     'prefix': 'construct'
     'body': '(function(scope) {\n  function ConstructorName$1(options) { \n    this.property = options.property; \n    this.init(); \n  }\n\n  ConstructorName$2.prototype.init = function(){\n    console.log(\'init\'); \n  };\n\n  var constructorName$3 = function(options) {\n    return new ConstructorName$4(options);\n  };\n\n  scope.constructorName$5 = constructorName$6; \n})(this);'
 
+  'Class':
+    'prefix': 'class'
+    'body': 'class $1 {\n  constructor(options) {\n    this.props = options || {};\n\n    $2\n  }\n}'
+
+  'Import':
+    'prefix': 'import'
+    'body': 'import $1 from \'$3\';'
+
+  'Export':
+    'prefix': 'export'
+    'body': 'export default $1;'
 
   # jquery
   '$.on':
@@ -69,10 +80,44 @@
     'body': '$.proxy(functionName$1, context$2);'
 
 
+  #mocha
+  'describe':
+    'prefix': 'desc'
+    'body': 'describe(\'$1\', function() {\n  $2\n});'
+
+  'it':
+    'prefix': 'it'
+    'body': 'it(\'$1\', function() {\n  $2\n});'
+
+  'expect':
+    'prefix': 'exp'
+    'body': 'expect($1);'
+
+  'before':
+    'prefix': 'bef'
+    'body': 'before(function() {\n  $1\n});'
+
+  'beforeEach':
+    'prefix': 'befe'
+    'body': 'beforeEach(function() {\n  $1\n});'
+
+  'after':
+    'prefix': 'aft'
+    'body': 'after(function() {\n  $1\n});'
+
+  'afterEach':
+    'prefix': 'afte'
+    'body': 'afterEach(function() {\n  $1\n});'
+
+
   #q-unit
   'test':
     'prefix': 'test'
-    'body': 'test(\'$1\', function() {\n  $2\n});'
+    'body': 'test(\'$1\', function(assert) {\n  $2\n});'
+
+  'assert':
+    'prefix': 'ass'
+    'body': 'assert.$1($2);'
 
   #ember
   'Controller':
@@ -98,6 +143,7 @@
   'Helper':
     'prefix': 'helper'
     'body': 'Ember.Handlebars.registerBoundHelper(\'$1\', function(args) {\n $2 \n});'
+
 
 # sass
 '.source.scss':

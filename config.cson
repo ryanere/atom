@@ -1,23 +1,28 @@
-'exception-reporting':
-  'userId': 'e39fbbeb-a39b-d8fd-accc-f3ac905e5407'
-'release-notes':
-  'viewedVersion': '0.95.0'
-'welcome':
-  'showOnStartup': false
-'metrics':
-  'userId': '3f5f9ca5ddd6111039ac49da74442baf10e900e5'
-'editor':
-  'fontFamily': 'Menlo'
-  'showIndentGuide': true
-  'invisibles': {}
-  'fontSize': 12
-'core':
-  'themes': [
-    'neutron-ui'
-    'neutron-syntax'
-  ]
-  'ignoredNames': [
-    '.git'
-    '.svn'
-    '.DS_Store'
-  ]
+"*":
+  "exception-reporting":
+    userId: "e39fbbeb-a39b-d8fd-accc-f3ac905e5407"
+  "release-notes":
+    viewedVersion: "0.95.0"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "3f5f9ca5ddd6111039ac49da74442baf10e900e5"
+  editor:
+    fontFamily: "Menlo"
+    showIndentGuide: true
+    invisibles: {}
+    fontSize: 12
+  core:
+    ignoredNames: [
+      ".git"
+      ".svn"
+      ".DS_Store"
+    ]
+    themes: [
+      "neutron-ui"
+      "neutron-syntax"
+    ]
+    excludeVcsIgnoredPaths: false
+  "autoclose-html": {}
+  linter: {}
+  react: {}

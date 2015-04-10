@@ -1,7 +1,7 @@
 {
   "name": "neutron-syntax",
   "theme": "syntax",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Syntax theme for the Neutron UI theme",
   "repository": {
     "type": "git",
@@ -17,10 +17,20 @@
     "url": "https://github.com/brentd/neutron-syntax/issues"
   },
   "homepage": "https://github.com/brentd/neutron-syntax",
-  "_id": "neutron-syntax@0.6.1",
+  "_id": "neutron-syntax@0.6.2",
   "dist": {
-    "shasum": "310109d804ad599870b9605faa05c30e849c8713"
+    "shasum": "3c71374913a8b765b4df46163be2dda60f2885df"
   },
-  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29381-xb3jk8/package.tgz",
-  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29381-xb3jk8/package.tgz"
+  "_resolved": "/private/var/folders/rn/64yzsz5561dgj4hkml7dls6h0000gp/T/d-114113-35836-150blfu/package.tgz",
+  "_from": "/private/var/folders/rn/64yzsz5561dgj4hkml7dls6h0000gp/T/d-114113-35836-150blfu/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }

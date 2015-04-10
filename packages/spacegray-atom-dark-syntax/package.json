@@ -1,7 +1,7 @@
 {
   "name": "spacegray-atom-dark-syntax",
   "theme": "syntax",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "A short description of your syntax theme",
   "repository": {
     "type": "git",
@@ -17,10 +17,21 @@
     "url": "https://github.com/jchouse/spacegray-atom-dark-syntax/issues"
   },
   "homepage": "https://github.com/jchouse/spacegray-atom-dark-syntax",
-  "_id": "spacegray-atom-dark-syntax@0.1.4",
+  "_id": "spacegray-atom-dark-syntax@0.2.0",
   "dist": {
-    "shasum": "8114ed0edda2c4af0f3a91e45343e4677d0b7124"
+    "shasum": "45b0dab44ec58e386ad0cd09b4e0408408764da3"
   },
-  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29397-ggk8cj/package.tgz",
-  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114631-29397-ggk8cj/package.tgz"
+  "_resolved": "file:../d-115213-12883-aq5tu6/package.tgz",
+  "_from": "../d-115213-12883-aq5tu6/package.tgz",
+  "_shasum": "c2730a3509a812b56e3da91bf5d55a236d256347",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }
