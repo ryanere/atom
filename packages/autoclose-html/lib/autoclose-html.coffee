@@ -1,48 +1,36 @@
-concatPattern = /\s*[,|]+\s*/g
-isTagLikePattern = /<(?![\!\/])([a-z]{1}[^>\s=\'\"]*)/i
-isOpeningTagLikePattern = /<(?![\!\/])([a-z]{1}[^>\s=\'\"]*)/i
-isClosingTagLikePattern = /<\/([a-z]{1}[^>\s=\'\"]*)/i
+isOpeningTagLikePattern = /<(?![\!\/])([a-z]{1}[^>\s=\'\"]*)[^>]*$/i
+defaultGrammars = ['HTML', 'HTML (Go)', 'HTML (Rails)', 'HTML (Angular)', 'HTML (Mustache)', 'HTML (Handlebars)', 'HTML (Ruby - ERB)', 'PHP']
+
+ConfigSchema = require('./configuration.coffee')
 
 module.exports =
-    configDefaults:
-        closeOnEndOfOpeningTag: false
-        neverClose: 'br, hr, img, input, link, meta, area, base, col, command, embed, keygen, param, source, track, wbr'
-        makeNeverCloseElementsSelfClosing: false
-        forceInline: 'title, h1, h2, h3, h4, h5, h6'
-        forceBlock: ''
-        additionalGrammars: ''
+    config: ConfigSchema.config
 
     neverClose:[]
     forceInline: []
     forceBlock: []
-    grammars: ['HTML']
+    grammars: defaultGrammars
     makeNeverCloseSelfClosing: false
     ignoreGrammar: false
 
     activate: () ->
-        #keeping this to correct the old value
-        atom.config.observe 'autoclose-html.ignoreGrammar', (value) =>
-            if value is true
-                atom.config.set 'autoclose-html.additionalGrammars', '*'
-                @ignoreGrammar = true
-            atom.config.set 'autoclose-html.ignoreGrammar', null
 
         atom.config.observe 'autoclose-html.neverClose', (value) =>
-            @neverClose = value.split(concatPattern)
+            @neverClose = value
 
         atom.config.observe 'autoclose-html.forceInline', (value) =>
-            @forceInline = value.split(concatPattern)
+            @forceInline = value
 
         atom.config.observe 'autoclose-html.forceBlock', (value) =>
-            @forceBlock = value.split(concatPattern)
+            @forceBlock = value
 
         atom.config.observe 'autoclose-html.additionalGrammars', (value) =>
-            if(value.indexOf('*') > -1)
+            if '*' in value
                 @ignoreGrammar = true
             else
-                @grammars = ['HTML'].concat(value.split(concatPattern))
+                @grammars = defaultGrammars.concat(value)
 
-        atom.config.observe 'autoclose-html.makeNeverCloseElementsSelfClosing', (value) =>
+        atom.config.observe 'autoclose-html.makeNeverCloseSelfClosing', (value) =>
             @makeNeverCloseSelfClosing = value
 
         @_events()
@@ -68,15 +56,31 @@ module.exports =
         eleTag.toLowerCase() in @neverClose
 
     execAutoclose: (changedEvent, editor) ->
-        if changedEvent?.newText is '>'
+        if changedEvent?.newText is '>' && editor == atom.workspace.getActiveTextEditor()
             line = editor.buffer.getLines()[changedEvent.newRange.end.row]
             partial = line.substr 0, changedEvent.newRange.start.column
+            partial = partial.substr(partial.lastIndexOf('<'))
 
             return if partial.substr(partial.length - 1, 1) is '/'
 
-            return if not (matches = partial.substr(partial.lastIndexOf('<')).match isOpeningTagLikePattern)?
+            singleQuotes = partial.match(/\'/g)
+            doubleQuotes = partial.match(/\"/g)
+            oddSingleQuotes = singleQuotes && (singleQuotes.length % 2)
+            oddDoubleQuotes = doubleQuotes && (doubleQuotes.length % 2)
+
+            return if oddSingleQuotes or oddDoubleQuotes
+
+            index = -1
+            while((index = partial.indexOf('"')) isnt -1)
+                partial = partial.slice(0, index) + partial.slice(partial.indexOf('"', index + 1) + 1)
+
+            while((index = partial.indexOf("'")) isnt -1)
+                partial = partial.slice(0, index) + partial.slice(partial.indexOf("'", index + 1) + 1)
+
+            return if not (matches = partial.match(isOpeningTagLikePattern))?
 
             eleTag = matches[matches.length - 1]
+
             if @isNeverClosed(eleTag)
                 if @makeNeverCloseSelfClosing
                     setTimeout ->
@@ -98,7 +102,7 @@ module.exports =
                     editor.setCursorBufferPosition changedEvent.newRange.end
                 else
                     editor.autoIndentBufferRow changedEvent.newRange.end.row + 1
-                    editor.setCursorBufferPosition [changedEvent.newRange.end.row + 1, atom.workspace.activePaneItem.getTabText().length * atom.workspace.activePaneItem.indentationForBufferRow(changedEvent.newRange.end.row + 1)]
+                    editor.setCursorBufferPosition [changedEvent.newRange.end.row + 1, atom.workspace.getActivePaneItem().getTabText().length * atom.workspace.getActivePaneItem().indentationForBufferRow(changedEvent.newRange.end.row + 1)]
 
     _events: () ->
         atom.workspace.observeTextEditors (textEditor) =>

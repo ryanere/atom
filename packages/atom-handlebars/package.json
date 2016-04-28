@@ -1,6 +1,6 @@
 {
   "name": "atom-handlebars",
-  "version": "0.4.0",
+  "version": "1.3.0",
   "description": "Handlebars support in Atom",
   "engines": {
     "atom": "*",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/Sneagan/atom-handlebars",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sneagan/atom-handlebars.git"
+    "url": "git+https://github.com/Sneagan/atom-handlebars.git"
   },
   "license": "MIT",
   "bugs": {
@@ -20,27 +20,28 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "atom",
-    "handlebars"
+    "handlebars",
+    "ember",
+    "grammar",
+    "snippets"
   ],
   "author": {
     "name": "Jackson Egan",
     "email": "jackson@sneagan.com",
     "url": "http://sneagan.com/"
   },
-  "readme": "# Handlebars support in Atom\n\nAdds syntax highlighting and snippets to Handlebars files in Atom.\n\nModified from [HTML Language Support in Atom](https://github.com/atom/language-html).\n\nContributions are greatly appreciated. Please fork this repository and open a pull request to add snippets, make grammar tweaks, etc.\n",
+  "readme": "# Handlebars support in Atom\n\nAdds syntax highlighting and snippets to Handlebars files in Atom.\n\n## Install\n\n```bash\n$ apm install atom-handlebars\n```\n\nOr Settings ➔ Packages ➔ Search for `atom-handlebars`\n\n## Snippets\n\n- `each` ⇥\n- `eachas` ⇥\n- `eachin` ⇥\n- `get` ⇥\n- `list` ⇥\n- `if` ⇥\n- `ifelse` ⇥\n- `unless` ⇥\n- `unelse` ⇥\n- `else` ⇥\n- `with` ⇥\n- `log` ⇥\n- `dbg` ⇥\n- `escape` ⇥\n- `link` ⇥\n\n## Contributions\n\nContributions are greatly appreciated. Please fork this repository and open a pull request to add snippets, make grammar tweaks, etc.\n",
   "readmeFilename": "README.md",
-  "_id": "atom-handlebars@0.4.0",
-  "dist": {
-    "shasum": "c78e03ee70384c461121b02f30e737978aaa50e9"
-  },
-  "_resolved": "/private/var/folders/rn/64yzsz5561dgj4hkml7dls6h0000gp/T/d-114113-35789-3cq38y/package.tgz",
-  "_from": "/private/var/folders/rn/64yzsz5561dgj4hkml7dls6h0000gp/T/d-114113-35789-3cq38y/package.tgz",
+  "_id": "atom-handlebars@1.3.0",
+  "_shasum": "b94391e80c5fa61c3465dbb7d01341b723f964d4",
+  "_resolved": "file:../d-116021-54581-11dipml/package.tgz",
+  "_from": "../d-116021-54581-11dipml/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],
     "extensions": {
       ".json": [
+        "coffeelint.json",
         "package.json"
       ]
     },

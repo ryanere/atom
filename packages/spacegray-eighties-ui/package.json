@@ -1,12 +1,12 @@
 {
   "name": "spacegray-eighties-ui",
   "theme": "ui",
-  "version": "0.7.0",
+  "version": "1.2.0",
   "description": "Port of the Spacegray Eighties (http://kkga.github.io/spacegray) Sublime Text theme to Atom",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/emilyemorehouse/spacegray-eighties-ui"
+    "url": "git+https://github.com/emilyemorehouse/spacegray-eighties-ui.git"
   },
   "engines": {
     "atom": ">0.50.0"
@@ -16,11 +16,19 @@
   "bugs": {
     "url": "https://github.com/emilyemorehouse/spacegray-eighties-ui/issues"
   },
-  "homepage": "https://github.com/emilyemorehouse/spacegray-eighties-ui",
-  "_id": "spacegray-eighties-ui@0.7.0",
-  "dist": {
-    "shasum": "d13560612bf66ebf4cf6e6ba23b790ee8325f043"
-  },
-  "_resolved": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-30770-2simfg/package.tgz",
-  "_from": "/var/folders/6v/bz6_yskx5rd7lk9sn9mkr1s40000gn/T/d-114416-30770-2simfg/package.tgz"
+  "homepage": "https://github.com/emilyemorehouse/spacegray-eighties-ui#readme",
+  "_id": "spacegray-eighties-ui@1.2.0",
+  "_shasum": "b0d4ac0135ae5d2e1ef575da8a3de39fe042dce6",
+  "_resolved": "file:../d-116021-1734-jhyv57/package.tgz",
+  "_from": "../d-116021-1734-jhyv57/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }

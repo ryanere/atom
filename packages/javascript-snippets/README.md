@@ -5,6 +5,7 @@
 ## Install
 
 Go to `Atom > Preferences...` then search for **JavaScript Snippets** in Packages tab.
+Restart atom.
 
 ## Development
 
@@ -30,6 +31,12 @@ console.dir(${1:obj});
 console.error(${1:obj});
 ```
 
+### [ci] console.info
+
+```javascript
+console.info(${1:obj});
+```
+
 ### [cl] console.log
 
 ```javascript
@@ -40,6 +47,12 @@ console.log(${1:obj});
 
 ```javascript
 console.warn(${1:obj});
+```
+
+### [de] debugger
+
+```javascript
+debugger;
 ```
 
 ## DOM
@@ -228,6 +241,20 @@ ${1:functionName}: function(${2:arguments}) {
 }
 ```
 
+## JSON
+
+### [jp] JSON.parse
+
+```javascript
+JSON.parse(${1:obj});
+```
+
+### [js] JSON.stringify
+
+```javascript
+JSON.stringify(${1:obj});
+```
+
 ## Timer
 
 ### [si] setInterval
@@ -326,6 +353,12 @@ it('${1:description}');
 
 ```javascript
 alert('${1:msg}');
+```
+
+### [co] confirm
+
+```javascript
+confirm('${1:msg}');
 ```
 
 ### [pm] prompt

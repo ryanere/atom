@@ -85,6 +85,10 @@
     'prefix': 'desc'
     'body': 'describe(\'$1\', function() {\n  $2\n});'
 
+  'context':
+    'prefix': 'cont'
+    'body': 'context(\'$1\', function() {\n  $2\n});'
+
   'it':
     'prefix': 'it'
     'body': 'it(\'$1\', function() {\n  $2\n});'
@@ -109,7 +113,6 @@
     'prefix': 'afte'
     'body': 'afterEach(function() {\n  $1\n});'
 
-
   #q-unit
   'test':
     'prefix': 'test'
@@ -119,31 +122,26 @@
     'prefix': 'ass'
     'body': 'assert.$1($2);'
 
+  'ok':
+    'prefix': 'ok'
+    'body': 'ok($1);'
+
+  'visit':
+    'prefix': 'visit'
+    'body': 'visit(\'/$1\');$2'
+
+  'andThen':
+    'prefix': 'and'
+    'body': 'andThen(function() {\n  $1\n});'
+
   #ember
-  'Controller':
-    'prefix': 'controller'
-    'body': 'App.$1Controller = Ember.ObjectController.extend({\n  actions: {}\n});'
+  'Computed':
+    'prefix': 'computed',
+    'body': 'Ember.computed(\n  \'$1\', {\n\n  get() {\n    $2\n  }\n})$3'
 
-  'Route':
-    'prefix': 'route'
-    'body': 'App.$1Route = Ember.Route.extend({\n  // activate: function() {}\n  // deactivate: function() {},\n  // setupController: function(controller, model) {},\n  // renderTemplate: function() {},\n  // beforeModel: function() {},\n  // afterModel: function() {},\n  model: function() {\n $2\n  }\n});'
-
-  'Model':
-    'prefix': 'model'
-    'body': 'App.$1 = DS.Model.extend({\n  title: DS.attr(\'string\')\n});'
-
-  'Component':
-    'prefix': 'component'
-    'body': 'App.$1Component = Ember.Component.extend({\n  // tagName: \'div\', \n  // classNames: [\'classname\']  \n});'
-
-  'Mixin':
-    'prefix': 'mixin'
-    'body': 'App.$1Mixin = Ember.Mixin.create({\n $2 \n});'
-
-  'Helper':
-    'prefix': 'helper'
-    'body': 'Ember.Handlebars.registerBoundHelper(\'$1\', function(args) {\n $2 \n});'
-
+  'Run':
+    'prefix': 'run',
+    'body': 'Ember.run((\$1\) => {\n  $2\n});$3'
 
 # sass
 '.source.scss':

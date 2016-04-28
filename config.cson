@@ -1,28 +1,46 @@
 "*":
-  "exception-reporting":
-    userId: "e39fbbeb-a39b-d8fd-accc-f3ac905e5407"
-  "release-notes":
-    viewedVersion: "0.95.0"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "3f5f9ca5ddd6111039ac49da74442baf10e900e5"
-  editor:
-    fontFamily: "Menlo"
-    showIndentGuide: true
-    invisibles: {}
-    fontSize: 12
+  "autoclose-html": {}
   core:
+    customFileTypes:
+      "source.js.jsx.erb": [
+        "jsx"
+      ]
+    excludeVcsIgnoredPaths: false
+    followSymlinks: false
     ignoredNames: [
       ".git"
       ".svn"
       ".DS_Store"
+      "tmp"
+      "bower_components"
+      "node_modules"
+      "dist"
     ]
     themes: [
-      "neutron-ui"
-      "neutron-syntax"
+      "spacegray-dark-ui"
+      "spacegray-dark-syntax"
     ]
-    excludeVcsIgnoredPaths: false
-  "autoclose-html": {}
-  linter: {}
+  editor:
+    fontFamily: "Menlo"
+    fontSize: 12
+    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
+  "exception-reporting":
+    userId: "e39fbbeb-a39b-d8fd-accc-f3ac905e5407"
+  linter:
+    showErrorPanel: false
+  metrics:
+    userId: "3f5f9ca5ddd6111039ac49da74442baf10e900e5"
   react: {}
+  "release-notes":
+    viewedVersion: "0.95.0"
+  "terminal-plus":
+    core: {}
+    style:
+      fontFamily: "menlo"
+      theme: "pro"
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
