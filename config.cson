@@ -5,6 +5,14 @@
       "source.js.jsx.erb": [
         "jsx"
       ]
+    disabledPackages: [
+      "activate-power-mode"
+      "autoclose-html"
+      "color-picker"
+      "compass"
+      "linter"
+      "react"
+    ]
     excludeVcsIgnoredPaths: false
     followSymlinks: false
     ignoredNames: [
@@ -15,21 +23,24 @@
       "bower_components"
       "node_modules"
       "dist"
+      "log"
     ]
+    telemetryConsent: "limited"
     themes: [
       "spacegray-dark-ui"
       "spacegray-dark-syntax"
     ]
+    useCustomTitleBar: true
   editor:
     fontFamily: "Menlo"
-    fontSize: 12
     invisibles: {}
-    showIndentGuide: true
     showInvisibles: true
   "exception-reporting":
     userId: "e39fbbeb-a39b-d8fd-accc-f3ac905e5407"
   linter:
     showErrorPanel: false
+  "linter-rubocop":
+    executablePath: "/Users/Ryan/.rvm/gems/ruby-2.2.0/bin/rubocop"
   metrics:
     userId: "3f5f9ca5ddd6111039ac49da74442baf10e900e5"
   react: {}

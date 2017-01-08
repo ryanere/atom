@@ -86,7 +86,7 @@ ${1:document}.createElement(${2:elem});
 ### [cdf] createDocumentFragment
 
 ```javascript
-${1:document}.createDocumentFragment(${2:elem});
+${1:document}.createDocumentFragment();
 ```
 
 ### [ca] classList.add
@@ -216,9 +216,9 @@ ${1:ClassName}.prototype.${2:methodName} = function(${3:arguments}) {
 ### [iife] immediately-invoked function expression
 
 ```javascript
-(function(window, document, undefined) {
+(function(${1:window}, ${2:document}) {
 	${0:// body...}
-})(window, document);
+})(${1:window}, ${2:document});
 ```
 
 ### [call] function call
